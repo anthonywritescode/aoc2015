@@ -10,8 +10,8 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from typing import Generator
-from typing import Iterable
+from collections.abc import Generator
+from collections.abc import Iterable
 from typing import NamedTuple
 
 HERE = os.path.dirname(os.path.abspath(__file__))
