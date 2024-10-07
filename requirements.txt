@@ -1,2 +1,2 @@
--e support
+-e support-src
 pytest
