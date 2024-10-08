@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import os.path
-import re
 
 import pytest
 
@@ -10,17 +9,25 @@ import support
 
 INPUT_TXT = os.path.join(os.path.dirname(__file__), 'input.txt')
 
-REG = re.compile(r'^(.)(\1*)(.*)$')
-
 
 def _apply(s: str) -> str:
     parts = []
-    while s:
-        match = REG.match(s)
-        assert match is not None
-        parts.append(str(len(match[2]) + 1))
-        parts.append(match[1])
-        s = match[3]
+    n = 0
+    c = ''
+    for cand in s:
+        if n == 0:
+            c = cand
+            n = 1
+        elif c != cand:
+            parts.append(str(n))
+            parts.append(c)
+            c = cand
+            n = 1
+        else:
+            n += 1
+
+    parts.append(str(n))
+    parts.append(c)
     return ''.join(parts)
 
 
