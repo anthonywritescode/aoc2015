@@ -79,7 +79,9 @@ def download_input() -> int:
     os.chmod('input.txt', 0o400)
 
     lines = s.splitlines()
-    if len(lines) > 10:
+    if len(lines) == 1 and len(lines[0]) < 80:
+        print(lines[0])
+    elif len(lines) > 10:
         for line in lines[:10]:
             print(line)
         print('...')
